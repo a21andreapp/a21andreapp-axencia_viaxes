@@ -5,13 +5,17 @@ from datetime import datetime, timedelta
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
-class Proxecto(models.Model):
-    _name = 'mimodulo.proxecto'
-    _description = 'Proxecto'
+class AgencyPlace(models.Model):
+    _name = 'agency.place'
+    _description = 'Lugar de destino'
+    _actividad = 'Título actividade'
 
-    name = fields.Char('Título Proxecto', required=True)
+    name = fields.Char('Lugar', required=True)
     description = fields.Text('Descrición', required=True)
+    actividad = fields.Text('Nome actividade', required=True)
     start_date = fields.Date('Data comezo')
+    end_date = fields.Date('Data fin')
+    delivery_date = fields.Date('Data entrega', required=True)
     #autor_ids = fields.Many2many('res.partner', string='Participantes')
     #category_id = fields.Many2one('mimodulo.proxecto.category', string='Catergoría')
 
@@ -54,5 +58,4 @@ class Proxecto(models.Model):
 
     def change_release_date(self):
         self.ensure_one()
-        self.start_date = fields.Date.today()
-    
+        self.end_date = fields.Date.today()
