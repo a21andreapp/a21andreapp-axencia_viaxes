@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from datetime import datetime, timedelta
+#from datetime import datetime, timedelta
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
@@ -9,15 +9,13 @@ class AgencyPlace(models.Model):
     _name = 'agency.place'
     _description = 'Lugar de destino'
     _actividad = 'Título actividade'
+    #_prezo = 'Prezo da actividade'
 
     name = fields.Char('Lugar', required=True)
     description = fields.Text('Descrición', required=True)
     actividad = fields.Text('Nome actividade', required=True)
-    start_date = fields.Date('Data comezo')
-    end_date = fields.Date('Data fin')
-    delivery_date = fields.Date('Data entrega', required=True)
-    #autor_ids = fields.Many2many('res.partner', string='Participantes')
-    #category_id = fields.Many2one('mimodulo.proxecto.category', string='Catergoría')
+    currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.cr.execute("SELECT id FROM res_currency WHERE name = 'EUR';"), readonly=True)
+    prezo = fields.Monetary(string='Prezo actividade: ', currency_field='currency_id', widget='monetary', options={'currency_symbol': '€', 'currency_position': 'before'})
 
     state = fields.Selection([
         ('started', 'Comezado'),
@@ -55,7 +53,3 @@ class AgencyPlace(models.Model):
 
     def make_pending(self):
         self.change_state('pending')
-
-    def change_release_date(self):
-        self.ensure_one()
-        self.end_date = fields.Date.today()
