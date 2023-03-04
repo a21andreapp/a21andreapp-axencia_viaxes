@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id='proxecto_action' model='ir.actions.act_window'>
+        <field name="name">Os meus proxectos</field>
+        <field name="res_model">mimodulo.proxecto</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem name="Xestión de Proxectos" id="proxecto_base_menu" />
+    <menuitem name="Proxectos" id="proxecto_menu" parent="proxecto_base_menu" action="proxecto_action"/>
+
+    <!-- Form View -->
+    <record id="proxecto_view_form" model="ir.ui.view">
+      <field name="name">Formulario Proxecto</field>
+      <field name="model">mimodulo.proxecto</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="make_finished" string="Rematado" type="object"/>
+            <button name="make_started"  string="Comezado" type="object"/>
+            <button name="make_cancelled"  string="Cancelado" type="object"/>
+            <button name="make_pending"  string="Pendente" type="object"/>
+            <button name="change_release_date" string="Modificar data" type="object"/>
+            <field name="state" widget="statusbar"/>
+          </header>
+          <group>
+            <group>
+              <field name="name"/>
+              <!-- <field name="author_ids" widget="many2many_tags"/> -->
+            </group>
+            <group>
+              <!-- <field name="category_id"/> -->
+              <field name="description"/>
+              <field name="start_date"/>
+            </group>
+          </group>
+        </form>
+      </field>
+  </record>
+
+  <!-- Tree(list) View -->
+  <record id="proxecto_view_tree" model="ir.ui.view">
+        <field name="name">Lista de proxectos</field>
+        <field name="model">mimodulo.proxecto</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="start_date"/>
+            </tree>
+        </field>
+  </record>
+
+  <!-- Search View -->
+  <record id="proxecto_view_search" model="ir.ui.view">
+    <field name="name">Búsqueda de proxectos</field>
+    <field name="model">mimodulo.proxecto</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name"/>
+        <!-- <field name="author_ids"/> -->
+        <!-- <filter string="Sen autores" name="without_author" domain="[('author_ids','=',False)]"/> -->
+      </search>
+    </field>
+  </record>
+</odoo>
