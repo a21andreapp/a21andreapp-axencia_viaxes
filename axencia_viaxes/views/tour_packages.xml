@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id='agency_places_action' model='ir.actions.act_window'>
-        <field name="name">Paquetes turísticos</field>
+        <field name="name">Actividades por destino</field>
         <field name="res_model">agency.place</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="context">{'kanban_view_ref': 'axencia_viaxes.kanban_travel'}</field>
     </record>
 
     <menuitem name="Axencia de viaxes" id="agency_places_base_menu" />
-    <menuitem name="Paquetes turísticos" id="agency_places_menu" parent="agency_places_base_menu" action="agency_places_action"/>
+    <menuitem name="Actividades" id="agency_places_menu" parent="agency_places_base_menu" action="agency_places_action"/>
 
     <!-- Form View -->
     <record id="proxecto_view_form" model="ir.ui.view">
@@ -16,13 +16,6 @@
       <field name="model">agency.place</field>
       <field name="arch" type="xml">
         <form>
-          <!-- <header>
-            <button name="make_finished" string="Rematado" type="object"/>
-            <button name="make_started"  string="Comezado" type="object"/>
-            <button name="make_cancelled"  string="Cancelado" type="object"/>
-            <button name="make_pending"  string="Pendente" type="object"/>
-            <field name="state" widget="statusbar"/>
-          </header> -->
           <group>
             <group>
               <field name="name"/>
