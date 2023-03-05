@@ -9,15 +9,15 @@ class AgencyPlace(models.Model):
     _name = 'agency.place'
     _description = 'Lugar de destino'
     _actividad = 'Título actividade'
-    #_prezo = 'Prezo da actividade'
 
     name = fields.Char('Lugar', required=True)
     description = fields.Text('Descrición', required=True)
     actividad = fields.Text('Nome actividade', required=True)
-    currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.cr.execute("SELECT id FROM res_currency WHERE name = 'EUR';"), readonly=True)
-    prezo = fields.Monetary(string='Prezo actividade: ', currency_field='currency_id', widget='monetary', options={'currency_symbol': '€', 'currency_position': 'before'})
+    num_persoas = fields.Char('Número mínimo de persoas', required=True)
+    #currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.cr.execute("SELECT id FROM res_currency WHERE name = 'EUR'"), readonly=True)
+    #prezo = fields.Monetary(string='Prezo paquete: ', currency_field='currency_id', widget='monetary', options={'currency_symbol': '€', 'currency_position': 'before'})
 
-    state = fields.Selection([
+"""     state = fields.Selection([
         ('started', 'Comezado'),
         ('finished', 'Rematado'),
         ('pending', 'Pendente'),
@@ -52,4 +52,4 @@ class AgencyPlace(models.Model):
         self.change_state('cancelled')
 
     def make_pending(self):
-        self.change_state('pending')
+        self.change_state('pending') """

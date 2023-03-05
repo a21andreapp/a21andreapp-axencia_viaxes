@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_agency.place,agency.place,model_agency_place,base.group_user,1,1,1,1
+access_agency.client,agency.client,model_agency_client,base.group_user,1,1,1,1

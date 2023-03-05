@@ -1,3 +1,4 @@
 # -*- coding: utf-8 -*-
 
-from . import agency_place
+from . import tour_packages
+from . import client
