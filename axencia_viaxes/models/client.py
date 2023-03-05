@@ -9,7 +9,7 @@ class Client(models.Model):
     _description = "Cliente da axencia"
 
     partner_id = fields.Many2one('res.partner', ondelete='cascade', string='Nome')
-    member_number = fields.Integer(required=True)
+    member_number = fields.Integer(required=True, string='Número de cliente')
     date_of_birth = fields.Date('Data de nacemento')
     years = fields.Integer('Anos', compute='calculate_age')
 
