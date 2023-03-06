@@ -3,7 +3,7 @@
     <record id='flight_action' model='ir.actions.act_window'>
         <field name="name">Voos</field>
         <field name="res_model">agency.flight</field>
-        <field name="view_mode">tree,form,calendar</field>
+        <field name="view_mode">tree,form,calendar,kanban</field>
     </record>
 
     <menuitem name="Voos" id="flight_menu" parent="agency_places_base_menu" action="flight_action"/>
@@ -13,16 +13,25 @@
         <field name="name">Formulario voos</field>
         <field name="model">agency.flight</field>
         <field name="arch" type="xml">
-            <form>                
+            <form>          
+                <header>
+                    <button name="make_cancelled" string="Cancelado" type="object"/>
+                    <button name="make_finished"  string="Rematado" type="object"/>
+                    <button name="make_agotado"  string="Agotado" type="object"/>
+                    <button name="make_draft"  string="Dispoñible" type="object"/>
+                    <field name="state" widget="statusbar"/>
+                </header>     
                 <group>
                     <group>
                         <field name="departure_point"/>
+                        <field name="destination_point"/>
                         <field name="prezo"/>
                     </group>
                     <group>        
                         <field name="num_escalas"/>               
                         <field name="escalas"/>   
-                        <field name="flight_date"/>                  
+                        <field name="flight_hour"/> 
+                        <field name="flight_hour_arrival"/>              
                     </group>
                 </group>
             </form>
@@ -36,11 +45,46 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="departure_point"/>
+                <field name="destination_point"/>
                 <field name="prezo"/>
                 <field name="num_escalas"/>               
                 <field name="escalas"/>   
-                <field name="flight_date"/> 
+                <field name="flight_hour"/> 
+                <field name="flight_hour_arrival"/>  
             </tree>
+        </field>
+    </record>
+
+    <!-- Calendar View -->
+    <record id="id_de_la_vista" model="ir.ui.view">
+        <field name="name">Calendar flight</field>
+        <field name="model">agency.flight</field>
+        <field name="arch" type="xml">            
+            <calendar string="Título" date_start="flight_hour" date_stop="flight_hour_arrival" mode="month" color="destination_point" event_open_popup="true">
+                <field name="departure_point"/>
+                <field name="destination_point"/>
+                <field name="flight_hour"/>
+                <field name="flight_hour_arrival"/>
+                <field name="prezo"/>                
+            </calendar>        
+        </field>
+    </record>
+
+    <!-- Kanban View -->  
+    <record id="flight_view_kanban" model="ir.ui.view">
+        <field name="name">Flight Kanban</field>
+        <field name="model">agency.flight</field>
+        <field name="arch" type="xml">            
+            <kanban default_group_by="state">
+                <field name="departure_point" />   
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                          <field name="departure_point"/>
+                        </div>
+                      </t>
+                </templates>
+            </kanban>        
         </field>
     </record>
 </odoo>
