@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from . import tour_packages
+from . import agency_activities
 from . import client
+from . import flight

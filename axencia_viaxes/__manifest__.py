@@ -15,8 +15,9 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/tour_packages.xml',
-        'views/client.xml'
+        'views/agency_activities.xml',
+        'views/client.xml',
+        'views/flight.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

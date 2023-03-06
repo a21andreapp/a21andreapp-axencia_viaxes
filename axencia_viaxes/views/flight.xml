@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>   
+    <record id='flight_action' model='ir.actions.act_window'>
+        <field name="name">Voos</field>
+        <field name="res_model">agency.flight</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+
+    <menuitem name="Voos" id="flight_menu" parent="agency_places_base_menu" action="flight_action"/>
+
+    <!-- Form View -->
+    <record id="flight_view_form" model="ir.ui.view">
+        <field name="name">Formulario voos</field>
+        <field name="model">agency.flight</field>
+        <field name="arch" type="xml">
+            <form>                
+                <group>
+                    <group>
+                        <field name="departure_point"/>
+                        <field name="prezo"/>
+                    </group>
+                    <group>        
+                        <field name="num_escalas"/>               
+                        <field name="escalas"/>   
+                        <field name="flight_date"/>                  
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree(list) View -->
+    <record id="flight_view_tree" model="ir.ui.view">
+        <field name="name">Lista voos</field>
+        <field name="model">agency.flight</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="departure_point"/>
+                <field name="prezo"/>
+                <field name="num_escalas"/>               
+                <field name="escalas"/>   
+                <field name="flight_date"/> 
+            </tree>
+        </field>
+    </record>
+</odoo>
