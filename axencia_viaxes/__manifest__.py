@@ -17,7 +17,8 @@
         'security/ir.model.access.csv',
         'views/agency_activities.xml',
         'views/client.xml',
-        'views/flight.xml'
+        'views/flight.xml',
+        'views/agency_sales.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='agency_sales_action' model='ir.actions.act_window'>
+        <field name="name">Ventas</field>
+        <field name="res_model">agency.sales</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Ventas" id="agency_sales_menu" parent="agency_places_base_menu" action="agency_sales_action"/>
+
+    <!-- Vista de árbore-->
+    <record id="agency_sales_view_tree" model="ir.ui.view">
+        <field name="name">agency.sales.view.tree</field>
+        <field name="model">agency.sales</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="id"/>
+                <field name="client_name" />
+                <field name="flight_name" />
+                <field name="data_compra" />
+                <field name="pagado" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista formulario-->
+    <record id="agency_sales_view_form" model="ir.ui.view">
+        <field name="name">agency.sales.view.form</field>
+        <field name="model">agency.sales</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="client_name" />
+                    <field name="flight_name" />
+                </group>
+                <group>
+                    <field name="data_compra" />
+                    <field name="pagado"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

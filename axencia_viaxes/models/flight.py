@@ -7,10 +7,10 @@ class Flight(models.Model):
     _name = 'agency.flight'
     _description = "Voos dispoñibles"
 
-    departure_point = fields.Char(required=True, string='Lugar de salida')
-    destination_point = fields.Char(required=True, string='Lugar de destino')
+    #departure_point = fields.Char(required=True, string='Lugar de salida')
+    #destination_point = fields.Char(required=True, string='Lugar de destino')
     num_escalas = fields.Integer(required=True, string='Número de escalas')
-    escalas = fields.Char(string='Lugares de escala:', compute='escala')
+    #escalas = fields.Char(string='Lugares de escala:', compute='escala')
     flight_hour = fields.Datetime('Hora de ida')
     flight_hour_arrival = fields.Datetime('Hora de chegada')
     currency_id = fields.Many2one('res.currency', string='Currency')

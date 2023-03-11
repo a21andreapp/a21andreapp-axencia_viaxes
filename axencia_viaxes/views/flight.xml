@@ -23,13 +23,13 @@
                 </header>     
                 <group>
                     <group>
-                        <field name="departure_point"/>
-                        <field name="destination_point"/>
+                        <!-- <field name="departure_point"/>
+                        <field name="destination_point"/> -->
                         <field name="prezo"/>
                     </group>
                     <group>        
                         <field name="num_escalas"/>               
-                        <field name="escalas"/>   
+                        <!-- <field name="escalas"/>   -->   
                         <field name="flight_hour"/> 
                         <field name="flight_hour_arrival"/>              
                     </group>
@@ -44,11 +44,11 @@
         <field name="model">agency.flight</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="departure_point"/>
-                <field name="destination_point"/>
+                <!-- <field name="departure_point"/>
+                <field name="destination_point"/> -->
                 <field name="prezo"/>
                 <field name="num_escalas"/>               
-                <field name="escalas"/>   
+                <!-- <field name="escalas"/>   -->
                 <field name="flight_hour"/> 
                 <field name="flight_hour_arrival"/>  
             </tree>
@@ -60,9 +60,9 @@
         <field name="name">Calendar flight</field>
         <field name="model">agency.flight</field>
         <field name="arch" type="xml">            
-            <calendar string="Título" date_start="flight_hour" date_stop="flight_hour_arrival" mode="month" color="destination_point" event_open_popup="true">
-                <field name="departure_point"/>
-                <field name="destination_point"/>
+            <calendar string="Título" date_start="flight_hour" date_stop="flight_hour_arrival" mode="month" event_open_popup="true">
+                <!-- <field name="departure_point"/>
+                <field name="destination_point"/> -->
                 <field name="flight_hour"/>
                 <field name="flight_hour_arrival"/>
                 <field name="prezo"/>                
@@ -70,7 +70,7 @@
         </field>
     </record>
 
-    <!-- Kanban View -->  
+    <!--  Kanban View 
     <record id="flight_view_kanban" model="ir.ui.view">
         <field name="name">Flight Kanban</field>
         <field name="model">agency.flight</field>
@@ -86,5 +86,6 @@
                 </templates>
             </kanban>        
         </field>
-    </record>
+    </record> -->
+
 </odoo>

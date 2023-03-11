@@ -3,7 +3,7 @@
     <record id='client_action' model='ir.actions.act_window'>
         <field name="name">Clientes</field>
         <field name="res_model">agency.client</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <menuitem name="Clientes" id="client_menu" parent="agency_places_base_menu" action="client_action"/>
@@ -17,9 +17,11 @@
                 <group>
                     <group>
                         <field name="partner_id"/>
+                        <field name="dni"/>
+                        <field name="phone"/>
                     </group>
                     <group>        
-                        <field name="member_number"/>               
+                        <field name="email"/>
                         <field name="date_of_birth"/>   
                         <field name="years"/>                  
                     </group>
@@ -35,10 +37,46 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="partner_id"/>
-                <field name="member_number"/>
                 <field name="date_of_birth"/>
                 <field name="years"/>
+                <field name="dni"/>
+                <field name="phone"/>
+                <field name="email"/>
             </tree>
+        </field>
+    </record>
+
+    <!--Vista kanban-->
+    <record id="client_view_kanban" model="ir.ui.view">
+        <field name="name">kanban.client</field>
+        <field name="model">agency.client</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id" />
+                <field name="partner_id"/>
+                <field name="dni"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                            <div class="oe_kanban_details d-flex flex-column">
+                                <strong>
+                                    <italic>
+                                        <field name="partner_id"/>
+                                    </italic>
+                                </strong>
+                                <ul>
+                                    <li> ID : <field name="id" /></li>
+                                    <li> DNI : <field name="dni"/></li>
+                                    <li> Teléfono : <field name="phone"/></li>
+                                    <li> Correo electrónico: <field name="email"/></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 </odoo>

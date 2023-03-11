@@ -16,6 +16,9 @@
       <field name="model">agency.activity</field>
       <field name="arch" type="xml">
         <form>
+          <header>
+            <button name="delete_activity" string="Borrar actividade" type="object" class="btn-danger"/>
+          </header>
           <group>
             <group>
               <field name="name"/>
