@@ -19,6 +19,7 @@ class Locations(models.Model):
         for record in self:
             record.name = record.location
 
+    # crear un id único
     @api.model
     def create(self, vals):
         if vals.get('id', 'New') == 'New':

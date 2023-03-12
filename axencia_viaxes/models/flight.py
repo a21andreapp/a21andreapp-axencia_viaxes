@@ -90,6 +90,7 @@ class Flight(models.Model):
     def _check_precio_constrains(self):
         self._check_precio_not_zero()
 
+    # comprobar as horas de chegada e ida
     def check_flight_hours(self):
         now = datetime.now()
         if self.flight_hour <= now:

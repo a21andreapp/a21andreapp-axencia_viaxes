@@ -34,6 +34,7 @@ class AgencySales(models.Model):
                 raise UserError('O cliente xa ten unha compra sen pagar!!')
         return super(AgencySales, self).create(vals)
     
+    # comprobar que o destino da actividade e o destino do voo sexa o mesmo
     @api.constrains('activities', 'flight_name.destination_point.location')
     def _check_activities_location(self):
         for record in self:
@@ -41,6 +42,12 @@ class AgencySales(models.Model):
                 for activity in record.activities:
                     if activity.location.location != self.flight_name.destination_point.location:
                         raise UserError('A localización da actividade non coincide coa localización de chegada do voo')
+                    
+    # comprobar que o destino do hotel e o destino do voo sexa o mesmo
+    @api.constrains('flight_name', 'hotel')
+    def _check_hotel_location(self):
+        if self.flight_name.destination_point.location != self.hotel.city:
+            raise UserError('A localización do hotel non coincide coa localización de chegada do voo')
 
     @api.depends('client_name', 'flight_name')
     def _compute_name(self):
