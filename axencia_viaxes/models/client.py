@@ -10,12 +10,12 @@ class Client(models.Model):
     _inherits = {'res.partner': 'partner_id'}
     _description = "Cliente da axencia"
 
-    partner_id = fields.Many2one('res.partner', ondelete='cascade', string='Nome')
+    partner_id = fields.Many2one('res.partner', ondelete='cascade', string='Nome', readonly=False, required=True)
     date_of_birth = fields.Date('Data de nacemento', required=True)
     years = fields.Integer('Anos', compute='calculate_age', readonly=True)
     email = fields.Char(string='Correo electrónico', readonly=False)
     phone = fields.Char(string='Teléfono', required=True, readonly=False)
-    dni = fields.Char('DNI', required=True)
+    dni = fields.Char(string='DNI', required=True, readonly=False)
     id = fields.Integer(string='ID cliente', readonly=True)
     
     # calcular a idade según a data de nacemento e controlar os posibles erros
@@ -60,29 +60,28 @@ class Client(models.Model):
                 if not pattern.match(partner.dni):
                     raise UserError(_('O DNI introducido non é válido'))
 
-
-    #crea un id único para cada cliente
+    # Cando creamos un rexistro engadimos os valores no modelo res.partner e creamos un id único para cada cliente
     @api.model
     def create(self, vals):
-        if vals.get('id', 'New') == 'New':
-            vals['id'] = self.env['ir.sequence'].next_by_code('loan.sequence') or 'Error'
-        return super(Client, self).create(vals) 
-
-"""     #Cando creamos un rexistro engadimos os valores no modelo res.partner
-    @api.model
-    def create(self, vals):
-        partner_vals = {'name': vals.get('name'), 'email': vals.get('email'), 'phone': vals.get('phone'), 'dni':vals.get('dni')}
+        partner_vals = {
+            'partner_id': vals.get('partner_id'),
+            'email': vals.get('email'),
+            'phone': vals.get('phone'),
+            'dni':vals.get('dni'),
+        }
         partner = self.env['res.partner'].create(partner_vals)
         vals['partner_id'] = partner.id
+        if vals.get('id', 'New') == 'New':
+            vals['id'] = self.env['ir.sequence'].next_by_code('loan.sequence') or 'Error'
         return super(Client, self).create(vals)
-    
+
     #se se modifica un rexistro cambiamolo en res.partner tamén
     def write(self, vals):
         result = super(Client, self).write(vals)
-        if 'name' in vals or 'email' in vals or 'phone' in vals:
+        if 'partner_id' in vals or 'email' in vals or 'phone' in vals or 'dni' in vals:
             partner_vals = {}
-            if 'name' in vals:
-                partner_vals['name'] = vals['name']
+            if 'partner_id' in vals:
+                partner_vals['partner_id'] = vals['partner_id']
             if 'email' in vals:
                 partner_vals['email'] = vals['email']
             if 'phone' in vals:
@@ -90,4 +89,4 @@ class Client(models.Model):
             if 'dni' in vals:
                 partner_vals['dni'] = vals['dni']
             self.partner_id.write(partner_vals)
-        return result     """
+        return result
