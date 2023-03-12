@@ -14,10 +14,10 @@ class Locations(models.Model):
     airport = fields.Char(string='Aeroporto', required=True)
     name = fields.Char(compute='_compute_name', store=True)
 
-    @api.depends('location', 'airport')
+    @api.depends('location')
     def _compute_name(self):
         for record in self:
-            record.name = f"{record.location} - {record.airport}"
+            record.name = f"{record.location}"
 
     @api.model
     def create(self, vals):

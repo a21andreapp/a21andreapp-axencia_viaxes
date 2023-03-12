@@ -16,6 +16,7 @@ class Flight(models.Model):
     flight_hour_arrival = fields.Datetime('Hora de chegada')
     prezo = fields.Float(string='Prezo', digits=(4, 2), required=True, default = 0.0)
     compras = fields.One2many('agency.sales', 'flight_name', string='Compras', readonly=True)
+    name = fields.Char(compute='_compute_name', store=True)
 
     state = fields.Selection([
         ('draft', 'Dispoñible'),
@@ -23,6 +24,11 @@ class Flight(models.Model):
         ('cancelled', 'Cancelado'),
         ('agotado','Agotado')],
         'State', default="draft")
+    
+    @api.depends('departure_point', 'destination_point')
+    def _compute_name(self):
+        for record in self:
+            record.name = f"{record.departure_point} - {record.destination_point}"
 
     @api.model
     def is_allowed_transition(self, old_state, new_state):

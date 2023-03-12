@@ -61,33 +61,9 @@ class Client(models.Model):
                 if not pattern.match(partner.dni):
                     raise UserError(_('O DNI introducido non é válido'))
 
-    # Cando creamos un rexistro engadimos os valores no modelo res.partner e creamos un id único para cada cliente
+    # creamos un id único para cada cliente
     @api.model
     def create(self, vals):
-        partner_vals = {
-            'partner_id': vals.get('partner_id'),
-            'email': vals.get('email'),
-            'phone': vals.get('phone'),
-            'dni':vals.get('dni'),
-        }
-        partner = self.env['res.partner'].create(partner_vals)
-        vals['partner_id'] = partner.id
         if vals.get('id', 'New') == 'New':
             vals['id'] = self.env['ir.sequence'].next_by_code('loan.sequence') or 'Error'
         return super(Client, self).create(vals)
-
-    #se se modifica un rexistro cambiamolo en res.partner tamén
-    def write(self, vals):
-        result = super(Client, self).write(vals)
-        if 'partner_id' in vals or 'email' in vals or 'phone' in vals or 'dni' in vals:
-            partner_vals = {}
-            if 'partner_id' in vals:
-                partner_vals['partner_id'] = vals['partner_id']
-            if 'email' in vals:
-                partner_vals['email'] = vals['email']
-            if 'phone' in vals:
-                partner_vals['phone'] = vals['phone']
-            if 'dni' in vals:
-                partner_vals['dni'] = vals['dni']
-            self.partner_id.write(partner_vals)
-        return result
