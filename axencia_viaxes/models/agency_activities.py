@@ -12,7 +12,7 @@ class AgencyActivities(models.Model):
     location = fields.Many2one('agency.locations', string='Destino', required=True)
     description = fields.Text('Descrición', required=True)
     actividad = fields.Char('Nome actividade', required=True)
-    num_persoas = fields.Selection(string = 'Número mínimo de persoas' , selection = [('1', '1'),('2', '2'),('3', '3'),('4','4'),('5','5'),('6', '6'),('7', '7'),('8', '8'),('+9','+9')], required = True)
+    num_persoas = fields.Selection(string = 'Número mínimo de persoas' , selection = [('1', '1'),('2', '2'),('3', '3'),('4','4'),('5','5'),('6', '6'),('7', '7'),('8', '8'),('+9','+9')], default="1", required = True)
     name = fields.Char(compute='_compute_name', store=True)
 
     #borra unha actividade

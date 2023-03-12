@@ -13,7 +13,7 @@
         <field name="name">Formulario cliente</field>
         <field name="model">agency.client</field>
         <field name="arch" type="xml">
-            <form>                
+            <form>               
                 <group>
                     <group>
                         <field name="partner_id"/>

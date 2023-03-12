@@ -12,6 +12,13 @@ class Hotel(models.Model):
     city = fields.Char(string='Cidade', required=True)
     prezo = fields.Float(string='Prezo/noite', digits=(4, 2), required=True, default = 0.0)
     name = fields.Char(compute='_compute_name', store=True)
+    num_dias = fields.Integer(string='Número de días', required=True)
+    prezo_total = fields.Float(string='Prezo total', digits=(4, 2), readonly=True, compute='calcular_prezo_total')
+
+    @api.depends('prezo','num_dias')
+    def calcular_prezo_total(self):
+        for record in self:
+            record.prezo_total = record.prezo * record.num_dias
 
     #borra un hotel
     def delete_activity(self):

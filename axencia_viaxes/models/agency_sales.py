@@ -19,6 +19,7 @@ class AgencySales(models.Model):
     data_compra = fields.Date('Data compra', readonly=True, compute='set_date')
     pagado = fields.Boolean('Pagado', default=False)
     name = fields.Char(compute='_compute_name', store=True)
+    prezo = fields.Float(string='Prezo', digits=(4, 2), required=True, default = 0.0)
 
     def set_date(self):
         for sales in self:
