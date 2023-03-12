@@ -15,6 +15,7 @@ class AgencySales(models.Model):
     id = fields.Integer(string='id', readonly=True)
     client_name = fields.Many2one('agency.client', string='Cliente', required=True)
     flight_name = fields.Many2one('agency.flight', string='Vuelo', required=True)
+    hotel = fields.Many2one('agency.hotel', string='Hotel', required=True)
     activities = fields.Many2many('agency.activity', string='Lista de actividades', required=True)
     data_compra = fields.Date('Data compra', readonly=True, compute='set_date')
     pagado = fields.Boolean('Pagado', default=False)

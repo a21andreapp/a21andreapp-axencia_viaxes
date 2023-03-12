@@ -29,6 +29,9 @@
         <field name="model">agency.hotel</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="delete_activity" string="Borrar hotel" type="object" class="btn-danger"/>
+                </header>
                 <group>
                     <field name="hotel_name"/>
                     <field name="location"/>
