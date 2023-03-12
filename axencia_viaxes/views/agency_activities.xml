@@ -25,6 +25,7 @@
               <field name="description"/>
               <field name="actividad"/>
               <field name="num_persoas"/>
+              <field name="prezo"/>
             </group>
           </group>
         </form>
@@ -41,6 +42,7 @@
               <field name="description"/>
               <field name="actividad"/>
               <field name="num_persoas"/>
+              <field name="prezo"/>
             </tree>
         </field>
   </record>

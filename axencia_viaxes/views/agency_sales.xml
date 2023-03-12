@@ -22,6 +22,7 @@
                 <field name="activities"/>
                 <field name="data_compra" />
                 <field name="pagado" />
+                <field name="prezo"/>
             </tree>
         </field>
     </record>
@@ -41,6 +42,7 @@
                 <group>
                     <field name="data_compra" />
                     <field name="pagado"/>
+                    <field name="prezo"/>
                 </group>
             </form>
         </field>

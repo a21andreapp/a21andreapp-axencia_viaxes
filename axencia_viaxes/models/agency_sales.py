@@ -19,7 +19,22 @@ class AgencySales(models.Model):
     data_compra = fields.Date('Data compra', readonly=True, compute='set_date')
     pagado = fields.Boolean('Pagado', default=False)
     name = fields.Char(compute='_compute_name', store=True)
-    prezo = fields.Float(string='Prezo', digits=(4, 2), required=True, default = 0.0)
+    prezo = fields.Float(string='Prezo', digits=(4, 2), default = 0.0, readonly=True, compute='calcular_prezo_total')
+    prezo_total_actividades = fields.Float(string='Prezo total actividades', digits=(4, 2), readonly=True, compute='calcular_prezo_total_actividades')
+
+    @api.depends('activities')
+    def calcular_prezo_total_actividades(self):
+        for record in self:
+            total = 0.0
+            for activity in record.activities:
+                total += activity.prezo
+            record.prezo_total_actividades = total
+
+    @api.depends('prezo_total_actividades', 'hotel.prezo_total', 'flight_name.prezo')
+    def calcular_prezo_total(self):     
+        for record in self:
+            total = record.prezo_total_actividades + record.flight_name.prezo + record.hotel.prezo_total
+            record.prezo = total
 
     def set_date(self):
         for sales in self:

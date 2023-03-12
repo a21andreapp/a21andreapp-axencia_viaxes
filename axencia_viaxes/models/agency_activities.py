@@ -14,6 +14,7 @@ class AgencyActivities(models.Model):
     actividad = fields.Char('Nome actividade', required=True)
     num_persoas = fields.Selection(string = 'Número mínimo de persoas' , selection = [('1', '1'),('2', '2'),('3', '3'),('4','4'),('5','5'),('6', '6'),('7', '7'),('8', '8'),('+9','+9')], default="1", required = True)
     name = fields.Char(compute='_compute_name', store=True)
+    prezo = fields.Float(string='Prezo', digits=(4, 2), required=True, default = 0.0)
 
     #borra unha actividade
     def delete_activity(self):

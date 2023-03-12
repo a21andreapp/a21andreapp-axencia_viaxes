@@ -20,6 +20,17 @@ class Hotel(models.Model):
         for record in self:
             record.prezo_total = record.prezo * record.num_dias
 
+    # comprobar que o número de días non sexa 0
+    @api.depends('num_dias')
+    def _check_num_dias(self):
+        for record in self:
+            if record.num_dias <= 0:
+                raise UserError(_('O número de días debe ser maior a 0'))
+            
+    @api.constrains('num_dias')
+    def _check_num_dias_constrains(self):
+        self._check_num_dias()
+
     #borra un hotel
     def delete_activity(self):
         self.ensure_one()
