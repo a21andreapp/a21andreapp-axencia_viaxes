@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import logging
-
 from odoo import models, fields, api
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
@@ -24,8 +23,30 @@ class AgencySales(models.Model):
     def set_date(self):
         for sales in self:
             sales.data_compra = datetime.now()
+   
+    @api.model
+    def create(self, vals):
+        client_id = vals.get('client_name')
+        if client_id:
+            unpaid_sales = self.search([('client_name', '=', client_id), ('pagado', '=', False)])
+            if unpaid_sales:
+                raise UserError('O cliente xa ten unha compra sen pagar!!')
+        return super(AgencySales, self).create(vals)
 
     @api.depends('client_name', 'flight_name')
     def _compute_name(self):
         for record in self:
             record.name = f"{self.client_name.partner_id.name} ( {self.flight_name.departure_point.location} - {self.flight_name.destination_point.location})"
+
+    @api.model
+    def comprobar_disponibilidad(self):
+        if self.flight_name.state == 'agotado':
+            raise UserError('Non se pode comprar un voo agotado')
+        elif self.flight_name.state == 'cancelled':
+            raise UserError('Non se pode comprar un voo cancelado')   
+        elif self.flight_name.state == 'finished':
+            raise UserError('Non se pode comprar un voo acabado')            
+
+    @api.constrains('flight_name')    
+    def action_confirm_reservation(self):
+        self.comprobar_disponibilidad()

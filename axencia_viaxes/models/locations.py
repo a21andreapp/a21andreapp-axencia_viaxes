@@ -17,7 +17,7 @@ class Locations(models.Model):
     @api.depends('location')
     def _compute_name(self):
         for record in self:
-            record.name = f"{record.location} - {record.airport}"
+            record.name = record.location
 
     @api.model
     def create(self, vals):

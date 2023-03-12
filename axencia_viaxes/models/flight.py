@@ -17,13 +17,14 @@ class Flight(models.Model):
     prezo = fields.Float(string='Prezo', digits=(4, 2), required=True, default = 0.0)
     compras = fields.One2many('agency.sales', 'flight_name', string='Compras', readonly=True)
     name = fields.Char(compute='_compute_name', store=True)
+    is_finished = fields.Boolean(string='Acabado', default=False, readonly=True)
 
     state = fields.Selection([
         ('draft', 'Dispoñible'),
         ('finished', 'Rematado'),
         ('cancelled', 'Cancelado'),
         ('agotado','Agotado')],
-        'State', default="draft")
+        'state', default="draft")
     
     @api.depends('departure_point', 'destination_point')
     def _compute_name(self):
@@ -53,10 +54,10 @@ class Flight(models.Model):
       
     def make_finished(self):
         today = datetime.today()
-        if self.flight_hour_arrival >= today:
+        if self.flight_hour_arrival <= today:
             self.change_state('finished')
         else:
-            message = ('Non se pode marcar como rematado porque a hora de chegada non coincide coa hora actual %s') % (today)
+            message = ('Non se pode marcar como rematado porque a hora de chegada é maior á hora actual %s') % (today)
             raise UserError(message)
 
     def make_agotado(self):
@@ -88,3 +89,14 @@ class Flight(models.Model):
     @api.constrains('prezo')
     def _check_precio_constrains(self):
         self._check_precio_not_zero()
+
+    def check_flight_hours(self):
+        now = datetime.now()
+        if self.flight_hour <= now:
+            raise UserError('A hora de ida debe ser maior á hora actual.')
+        if self.flight_hour_arrival <= self.flight_hour:
+            raise UserError('A hora de chegada debe ser maior á hora de ida.')
+        
+    @api.constrains('flight_hour', 'flight_hour_arrival')
+    def _check_flight_constrains(self):
+        self.check_flight_hours()
