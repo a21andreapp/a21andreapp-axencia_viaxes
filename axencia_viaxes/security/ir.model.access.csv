@@ -2,3 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_agency.activity,agency.place,model_agency_activity,base.group_user,1,1,1,1
 access_agency.client,agency.client,model_agency_client,base.group_user,1,1,1,1
 access_agency.flight,agency.flight,model_agency_flight,base.group_user,1,1,1,1
+access_agency.sales,agency.sales,model_agency_sales,base.group_user,1,1,1,1

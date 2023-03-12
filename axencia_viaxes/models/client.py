@@ -17,6 +17,7 @@ class Client(models.Model):
     phone = fields.Char(string='Teléfono', required=True, readonly=False)
     dni = fields.Char(string='DNI', required=True, readonly=False)
     id = fields.Integer(string='ID cliente', readonly=True)
+    compras = fields.One2many('agency.sales', 'client_name', string='Compras', readonly=True)
     
     # calcular a idade según a data de nacemento e controlar os posibles erros
     @api.depends('date_of_birth')

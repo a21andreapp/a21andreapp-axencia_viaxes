@@ -19,11 +19,12 @@
                         <field name="partner_id"/>
                         <field name="dni"/>
                         <field name="phone"/>
+                        <field name="compras"/>  
                     </group>
                     <group>        
                         <field name="email"/>
                         <field name="date_of_birth"/>   
-                        <field name="years"/>                  
+                        <field name="years"/>     
                     </group>
                 </group>
             </form>
