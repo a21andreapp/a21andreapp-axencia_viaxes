@@ -24,6 +24,7 @@ class AgencySales(models.Model):
         for sales in self:
             sales.data_compra = datetime.now()
    
+   # comprobar que o cliente non teña compras sen pagar
     @api.model
     def create(self, vals):
         client_id = vals.get('client_name')
@@ -32,12 +33,21 @@ class AgencySales(models.Model):
             if unpaid_sales:
                 raise UserError('O cliente xa ten unha compra sen pagar!!')
         return super(AgencySales, self).create(vals)
+    
+    @api.constrains('activities', 'flight_name.destination_point.location')
+    def _check_activities_location(self):
+        for record in self:
+            if record.activities:
+                for activity in record.activities:
+                    if activity.location.location != self.flight_name.destination_point.location:
+                        raise UserError('A localización da actividade non coincide coa localización de chegada do voo')
 
     @api.depends('client_name', 'flight_name')
     def _compute_name(self):
         for record in self:
             record.name = f"{self.client_name.partner_id.name} ( {self.flight_name.departure_point.location} - {self.flight_name.destination_point.location})"
 
+    # comprobar dispoñibilidade de un voo
     @api.model
     def comprobar_disponibilidad(self):
         if self.flight_name.state == 'agotado':
