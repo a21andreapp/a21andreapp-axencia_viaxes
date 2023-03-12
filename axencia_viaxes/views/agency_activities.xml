@@ -21,7 +21,7 @@
           </header>
           <group>
             <group>
-              <field name="name"/>
+              <field name="location"/>
               <field name="description"/>
               <field name="actividad"/>
               <field name="num_persoas"/>
@@ -37,7 +37,7 @@
         <field name="model">agency.activity</field>
         <field name="arch" type="xml">
             <tree>
-              <field name="name"/>
+              <field name="location"/>
               <field name="description"/>
               <field name="actividad"/>
               <field name="num_persoas"/>
@@ -51,7 +51,7 @@
     <field name="model">agency.activity</field>
     <field name="arch" type="xml">
       <search>
-        <field name="name"/>
+        <field name="location"/>
         <field name="num_persoas"/>
       </search>
     </field>
@@ -62,8 +62,8 @@
     <field name="name">agency.place.kanban</field>
     <field name="model">agency.activity</field>
     <field name="arch" type="xml">
-      <kanban default_group_by="name">
-        <field name="name"/>
+      <kanban default_group_by="location">
+        <field name="location"/>
         <templates>
           <t t-name="kanban-box">
             <div class="oe_kanban_card oe_kanban_global_click">

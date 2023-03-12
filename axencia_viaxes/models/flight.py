@@ -8,13 +8,14 @@ class Flight(models.Model):
     _name = 'agency.flight'
     _description = "Voos dispoñibles"
 
-    departure_point = fields.Char(required=True, string='Lugar de salida')
-    destination_point = fields.Char(required=True, string='Lugar de destino')
+    departure_point = fields.Many2one('agency.locations', string='Lugar de salida', required=True)
+    destination_point = fields.Many2one('agency.locations', string='Lugar de chegada', required=True)
     num_escalas = fields.Selection(required=True, string='Número de escalas', selection=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3')], default="0")
     escalas = fields.Char(string='Lugares de escala:', required=True)
     flight_hour = fields.Datetime('Hora de ida')
     flight_hour_arrival = fields.Datetime('Hora de chegada')
     prezo = fields.Float(string='Prezo', digits=(4, 2), required=True, default = 0.0)
+    compras = fields.One2many('agency.sales', 'flight_name', string='Compras', readonly=True)
 
     state = fields.Selection([
         ('draft', 'Dispoñible'),
@@ -75,7 +76,7 @@ class Flight(models.Model):
     @api.depends('prezo')
     def _check_precio_not_zero(self):
         for record in self:
-            if record.prezo == 0:
+            if record.prezo <= 0:
                 raise UserError(_('O prezo do voo non pode ser de 0€'))
     
     @api.constrains('prezo')

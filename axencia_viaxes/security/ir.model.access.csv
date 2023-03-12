@@ -3,3 +3,4 @@ access_agency.activity,agency.place,model_agency_activity,base.group_user,1,1,1,
 access_agency.client,agency.client,model_agency_client,base.group_user,1,1,1,1
 access_agency.flight,agency.flight,model_agency_flight,base.group_user,1,1,1,1
 access_agency.sales,agency.sales,model_agency_sales,base.group_user,1,1,1,1
+access_agency.locations,agency.locations,model_agency_locations,base.group_user,1,1,1,1

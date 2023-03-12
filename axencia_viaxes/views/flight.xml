@@ -27,6 +27,7 @@
                         <field name="departure_point"/>
                         <field name="destination_point"/>
                         <field name="prezo"/>
+                        <field name="compras"/>
                     </group>
                     <group>        
                         <field name="num_escalas"/>               

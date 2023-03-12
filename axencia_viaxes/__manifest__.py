@@ -2,7 +2,7 @@
 {
     'name': "Axencia de viaxes",
     'summary': "Obtén información e regala a mellor das túas viaxes",
-    'description': "Long description of module's purpose",
+    'description': "Xestión dunha empresa de axencia de viaxes",
 
     'author': "Andrea Peteiro Piñeiro",
     'website': "http://www.yourcompany.com",
@@ -18,7 +18,8 @@
         'views/agency_activities.xml',
         'views/client.xml',
         'views/flight.xml',
-        'views/agency_sales.xml'
+        'views/agency_sales.xml',
+        'views/locations.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
