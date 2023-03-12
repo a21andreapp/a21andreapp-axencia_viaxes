@@ -18,6 +18,7 @@
                 <field name="id"/>
                 <field name="client_name" />
                 <field name="flight_name" />
+                <field name="activities"/>
                 <field name="data_compra" />
                 <field name="pagado" />
             </tree>
@@ -33,6 +34,7 @@
                 <group>
                     <field name="client_name" />
                     <field name="flight_name" />
+                    <field name="activities"/>
                 </group>
                 <group>
                     <field name="data_compra" />

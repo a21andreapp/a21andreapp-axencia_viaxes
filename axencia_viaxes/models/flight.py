@@ -28,7 +28,7 @@ class Flight(models.Model):
     @api.depends('departure_point', 'destination_point')
     def _compute_name(self):
         for record in self:
-            record.name = f"{record.departure_point} - {record.destination_point}"
+            record.name = f"{self.departure_point.location} - {self.destination_point.location}"
 
     @api.model
     def is_allowed_transition(self, old_state, new_state):
