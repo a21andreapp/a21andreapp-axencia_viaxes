@@ -1,4 +1,4 @@
-# modulo_sxe
+# Módulo axencia de viaxes
 
 ## DESCRIPCIÓN
 
