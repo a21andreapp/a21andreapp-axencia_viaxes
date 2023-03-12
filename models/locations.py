@@ -25,3 +25,8 @@ class Locations(models.Model):
         if vals.get('id', 'New') == 'New':
             vals['id'] = self.env['ir.sequence'].next_by_code('loan.sequence') or 'Error'
         return super(Locations, self).create(vals)
+    
+    #borra un destino
+    def delete_location(self):
+        self.ensure_one()
+        self.unlink() 

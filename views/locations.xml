@@ -27,6 +27,9 @@
         <field name="model">agency.locations</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="delete_location" string="Borrar destino" type="object" class="btn-danger"/>
+                </header>
                 <group>
                     <field name="id"/>
                     <field name="location" />
