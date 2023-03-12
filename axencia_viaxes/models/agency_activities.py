@@ -23,4 +23,4 @@ class AgencyActivities(models.Model):
     @api.depends('actividad')
     def _compute_name(self):
         for record in self:
-            record.name = self.location.location
+            record.name = self.actividad

@@ -19,7 +19,8 @@
         'views/client.xml',
         'views/flight.xml',
         'views/agency_sales.xml',
-        'views/locations.xml'
+        'views/locations.xml',
+        'views/hotel.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

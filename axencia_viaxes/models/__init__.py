@@ -5,3 +5,4 @@ from . import client
 from . import flight
 from . import agency_sales
 from . import locations
+from . import hotel
