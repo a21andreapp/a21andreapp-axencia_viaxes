@@ -18,9 +18,7 @@
                 <field name="hotel_name"/>
                 <field name="location"/>
                 <field name="city"/>
-                <field name="num_dias"/>
                 <field name="prezo"/>
-                <field name="prezo_total"/>
             </tree>
         </field>
     </record>
@@ -38,9 +36,7 @@
                     <field name="hotel_name"/>
                     <field name="location"/>
                     <field name="city"/>
-                    <field name="num_dias"/>
                     <field name="prezo"/>
-                    <field name="prezo_total"/>
                 </group>
             </form>
         </field>

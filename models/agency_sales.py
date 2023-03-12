@@ -21,7 +21,28 @@ class AgencySales(models.Model):
     name = fields.Char(compute='_compute_name', store=True)
     prezo = fields.Float(string='Prezo', digits=(4, 2), default = 0.0, readonly=True, compute='calcular_prezo_total')
     prezo_total_actividades = fields.Float(string='Prezo total actividades', digits=(4, 2), readonly=True, compute='calcular_prezo_total_actividades')
+    num_dias = fields.Integer(string='Número de días', required=True)
+    prezo_hotel = fields.Float(string='Prezo hotel', digits=(4, 2), readonly=True, compute='calcular_prezo_hotel')
 
+    # comprobar que o número de días non sexa 0
+    @api.depends('num_dias')
+    def _check_num_dias(self):
+        for record in self:
+            if record.num_dias <= 0:
+                raise UserError(_('O número de días debe ser maior a 0'))
+      
+    @api.constrains('num_dias')
+    def _check_num_dias_constrains(self):
+        self._check_num_dias()
+
+    # calcular o prezo do hotel dependendo do días escollidos
+    @api.depends('num_dias', 'hotel.prezo')
+    def calcular_prezo_hotel(self):
+        for record in self:
+            total = record.hotel.prezo * record.num_dias
+            record.prezo_hotel = total
+
+    # calcular o prezo total das actividades seleccionadas
     @api.depends('activities')
     def calcular_prezo_total_actividades(self):
         for record in self:
@@ -30,10 +51,11 @@ class AgencySales(models.Model):
                 total += activity.prezo
             record.prezo_total_actividades = total
 
-    @api.depends('prezo_total_actividades', 'hotel.prezo_total', 'flight_name.prezo')
+    # calcular prezo total da venta
+    @api.depends('prezo_total_actividades', 'prezo_hotel', 'flight_name.prezo')
     def calcular_prezo_total(self):     
         for record in self:
-            total = record.prezo_total_actividades + record.flight_name.prezo + record.hotel.prezo_total
+            total = record.prezo_total_actividades + record.flight_name.prezo + record.prezo_hotel
             record.prezo = total
 
     def set_date(self):

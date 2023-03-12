@@ -19,6 +19,7 @@
                 <field name="client_name" />
                 <field name="flight_name" />
                 <field name="hotel"/>
+                <field name="num_dias"/>
                 <field name="activities"/>
                 <field name="data_compra" />
                 <field name="pagado" />
@@ -37,6 +38,7 @@
                     <field name="client_name" />
                     <field name="flight_name" />
                     <field name="hotel"/>
+                    <field name="num_dias"/>
                     <field name="activities"/>
                 </group>
                 <group>
