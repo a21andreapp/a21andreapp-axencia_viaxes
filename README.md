@@ -1,11 +1,11 @@
 # Módulo axencia de viaxes
 
-## DESCRICIÓN
+### DESCRICIÓN
 A funcionalidade básica deste módulo é a xestión dunha empresa de axencia de viaxes. Dentro dela pódense crear tanto os destinos como os hoteis que desexan ofrecer, 
 con esa información pódense crear os voos que van a ofrecer e a lista de actividades por destino que ofrecen.
 Tamén se vai poder gardar a información de cada cliente dentro dos cales gardaremos o histórico de compras, e cos clientes e os datos anteriores podense gardar as compras de cada cliente.
 
-## OBXECTIVOS
+### OBXECTIVOS
 O principal obxectivo do módulo é a súa utilización para a xestión de empresas de axencia de viaxes.
 
 ### INSTRUCIÓN/DOCUMENTACIÓN DE USO
