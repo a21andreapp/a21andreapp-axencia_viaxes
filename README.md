@@ -33,11 +33,11 @@ O módulo consta de 6 ventás, que son as seguintes:
 
     O estado dos voos pode cambiar de dispoñible -> rematado, dispoñible -> cancelado, dispoñible -> agotado, cancelado -> dispoñible, agotado -> dispoñible, agotado -> rematado.
 
-    - Actividades: créanse e gárdanse novas actividades agrupadas según o destino onde se realizan, nela gárdase información como o nome da actividade, breve descrición da actividade, número de persoas mínimas necesarias para a realización da actividade, o destino/lugar onde se realiza a actividade e o prezo da actividade. A súa vista principal é kanban para poder visualizalas agrupadas polo destino pero tamén e posible velas en modo árbore. Dispoñemos do seguinte botón:
+    - Actividades: créanse e gárdanse novas actividades agrupadas según o destino onde se realizan, nela gárdase información como o nome da actividade, breve descrición da actividade, número de persoas mínimas necesarias para a realización da actividade, o destino/lugar onde se realiza a actividade e o prezo da actividade. A súa vista principal é en modo árbore, pero tamén se poden ver en modo kanban para poder visualizalas agrupadas polo destino. Dispoñemos do seguinte botón:
 
         - Borrar actividade: borra a actividade selecionada.
 
-    - Hoteles: créanse e gárdanse os hoteis cos que a empresa traballa e que ofrece a os seus clientes. A única vista da que dispón é da vista árbore/lista. Os campos que conforman esta vista son: nome do hotel, ubicación, cidade, para poder relacionala cun destino, e o prezo por noite. Dispón do seguinte botón:
+    - Hoteles: créanse e gárdanse os hoteis cos que a empresa traballa e que ofrece a os seus clientes. A vista principal a vista árbore/lista, aínda que tamén dispón da vista kanban que nos permite visualizar os hoteis agrupados por cidade. Os campos que conforman esta vista son: nome do hotel, ubicación, cidade que é un campo relacionado co modelo destino, para así posteriormente nas ventas, poder comprobar que o nome do hotel coincide co nome do lugar de destino, e o prezo por noite. Dispón do seguinte botón:
 
         - Borrar hotel: permite borrar un hotel.
 

@@ -9,7 +9,7 @@ class Hotel(models.Model):
 
     hotel_name = fields.Char(string='Nome do hotel', required=True)
     location = fields.Char(string='Ubicación', required=True)
-    city = fields.Char(string='Cidade', required=True)
+    city = fields.Many2one('agency.locations', string='Cidade', required=True)
     prezo = fields.Float(string='Prezo/noite', digits=(4, 2), required=True, default = 0.0)
     name = fields.Char(compute='_compute_name', store=True)
 

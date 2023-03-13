@@ -4,7 +4,7 @@
     <record id='agency_hotel_action' model='ir.actions.act_window'>
         <field name="name">Hotel</field>
         <field name="res_model">agency.hotel</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
     </record>
 
     <menuitem name="Hoteles" id="agency_hotel_menu" parent="agency_places_base_menu" action="agency_hotel_action"/>
@@ -39,6 +39,35 @@
                     <field name="prezo"/>
                 </group>
             </form>
+        </field>
+    </record>
+
+    <!--Kanban View--> 
+    <record id="hotel_view_kanban" model="ir.ui.view">
+        <field name="name">Hotel Kanban</field>
+        <field name="model">agency.hotel</field>
+        <field name="arch" type="xml">            
+            <kanban default_group_by="city">
+                <field name="hotel_name" />   
+                <field name="location"/>
+                <field name="city"/>
+                <field name="prezo"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_details d-flex flex-column">
+                            <strong>
+                                <italic>
+                                    <field name="hotel_name"/>
+                                </italic>
+                            </strong>
+                            <ul>
+                                <li> Ubicación : <field name="location"/></li>
+                                <li> Prezo : <field name="prezo"/></li>
+                            </ul>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>  
         </field>
     </record>
 </odoo>

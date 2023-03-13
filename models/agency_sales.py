@@ -84,7 +84,7 @@ class AgencySales(models.Model):
     # comprobar que o destino do hotel e o destino do voo sexa o mesmo
     @api.constrains('flight_name', 'hotel')
     def _check_hotel_location(self):
-        if self.flight_name.destination_point.location != self.hotel.city:
+        if self.flight_name.destination_point.location != self.hotel.city.location:
             raise UserError('A localización do hotel non coincide coa localización de chegada do voo')
 
     @api.depends('client_name', 'flight_name')

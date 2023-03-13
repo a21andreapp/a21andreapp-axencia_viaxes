@@ -3,7 +3,7 @@
     <record id='agency_places_action' model='ir.actions.act_window'>
         <field name="name">Actividades por destino</field>
         <field name="res_model">agency.activity</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
         <field name="context">{'kanban_view_ref': 'axencia_viaxes.kanban_travel'}</field>
     </record>
 
